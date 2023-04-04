@@ -5,11 +5,13 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.acme.todolist.application.port.out.LoadTodoItem;
 import com.acme.todolist.application.port.out.UpdateTodoItem;
 import com.acme.todolist.domain.TodoItem;
+
 
 /**
  * Implémentation JPA des port out de persistence
@@ -39,6 +41,7 @@ public class TodoItemPersistenceAdapter implements LoadTodoItem,UpdateTodoItem {
 
 	@Override
 	public void storeNewTodoItem(TodoItem item) {
+		System.out.println(item.getContent());
 		this.todoItemRepository.save(mapper.mapToTodoItemJpaEntity(item));
 	}
 
